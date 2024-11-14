@@ -4,19 +4,19 @@ con = lite.connect('dados.db')
 
 # funções para inserir
 
-def inserirCategoria(i):
+def inserir_categoria(i):
     with con:
         cur = con.cursor()
         query = "INSERT INTO Categoria (nome) VALUES (?)"
         cur.execute(query, i)
 
-def inserirReceita(i):
+def inserir_receita(i):
     with con:
         cur = con.cursor()
         query = "INSERT INTO Receita (Categoria, adicionado_em, valor) VALUES (?, ?, ?)"
         cur.execute(query, i)
 
-def inserirGasto(i):
+def inserir_gasto(i):
     with con:
         cur = con.cursor()
         query = "INSERT INTO Despesa (Categoria, gasto_em, valor) VALUES (?, ?, ?)"
@@ -24,53 +24,54 @@ def inserirGasto(i):
 
 # funções para deletar
 
-def deletarReceita(i):
+def deletar_receita(i):
     with con:
         cur = con.cursor()
         query = "DELETE FROM Receita WHERE id=?"
         cur.execute(query, i)
 
-def deletarDespesa(i):
+def deletar_despesa(i):
     with con:
         cur = con.cursor()
         query = "DELETE FROM Despesa WHERE id=?"
         cur.execute(query, i)
 
-'''
-# Listar todas as tabelas
-cursor = con.cursor()
-cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-tabelas = cursor.fetchall()
-print(tabelas)  # Verifique se "Categoria" aparece na lista
-'''
+# funções para ver dados
 
-'''
-# Executar uma consulta para acessar todos os registros da tabela 'Categoria'
-cursor = con.cursor()
-cursor.execute("SELECT * FROM Categoria")
+def ver_categoria():
+    lista_itens = []
 
-# Recuperar todos os resultados da consulta
-categorias = cursor.fetchall()
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM Categoria")
+        linha = cur.fetchall()
+        for l in linha:
+            lista_itens.append(l)
 
-# Iterar e exibir os resultados
-for categoria in categorias:
-    print(f"ID: {categoria[0]}, Nome: {categoria[1]}")
-'''
+    return lista_itens
 
-'''
-# Apagar um registro específico da tabela 'Categoria' pelo 'id'
-cursor = con.cursor()
+def ver_receitas():
+    lista_itens = []
 
-id_categoria = 3  # Exemplo: queremos apagar a categoria com id 1
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM Receitas")
+        linha = cur.fetchall()
+        for l in linha:
+            lista_itens.append(l)
 
-cursor.execute("DELETE FROM Categoria WHERE id = ?", (id_categoria,))
+    return lista_itens
 
-# Confirmar a transação (salvar as alterações no banco de dados)
-con.commit()
+def ver_despesas():
+    lista_itens = []
 
-print(f"Categoria com id {id_categoria} apagada.")
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM Despesa")
+        linha = cur.fetchall()
+        for l in linha:
+            lista_itens.append(l)
 
-# Fechar o cursor e a conexão
-cursor.close()
-con.close()
-'''
+    return lista_itens
+
+print(ver_despesas())
