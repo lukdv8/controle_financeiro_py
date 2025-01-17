@@ -2,11 +2,8 @@ from tkinter import *
 from tkinter import Tk, ttk
 
 from PIL import Image, ImageTk
-
-# importa barra de progresso do Tkinter
 from tkinter.ttk import Progressbar
 
-# importa matplotlib
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
@@ -25,7 +22,6 @@ co9 = "#e9edf5"
 colors = ['#5588bb', '#66bbbb','#99bb55', '#ee9944', '#444466', '#bb5555']
 
 # cria janela
-
 janela = Tk()
 janela.title()
 janela.geometry('900x650')
@@ -36,7 +32,6 @@ style = ttk.Style(janela)
 style.theme_use("clam")
 
 # criando frames para divisao da tela
-
 frameCima = Frame(janela, width=1043, height=50, bg=co1, relief="flat")
 frameCima.grid(row=0, column=0)
 
@@ -48,7 +43,6 @@ frameBaixo.grid(row=2, column=0, pady=0, padx=10, sticky=NSEW)
 
 # frame cima
 # acessa imagem
-
 app_img = Image.open('dinosaur.png')
 app_img = app_img.resize((45,45))
 app_img = ImageTk.PhotoImage(app_img)
@@ -57,7 +51,6 @@ app_logo = Label(frameCima, image=app_img, text= " Controle Financeiro ", width=
 app_logo.place(x=0, y=0)
 
 # porcentagem
-
 def porcentagem():
     l_nome = Label(frameMeio, text="Porcentagem da receita gasta", height=1, anchor=NW, font=('Verdana 12'), bg=co1, fg=co4)
     l_nome.place(x=7, y=5)
@@ -77,7 +70,6 @@ def porcentagem():
     l_porcentagem.place(x=200, y=35)
 
 # funcao para grafico bars
-
 def grafico_bar():
     lista_categorias = ['Renda', 'Despesas', 'Saldo']
     lista_valores = [3000, 2000, 6236]
@@ -119,6 +111,19 @@ def grafico_bar():
     canva = FigureCanvasTkAgg(figura, frameMeio)
     canva.get_tk_widget().place(x=10, y=70)
 
+# funcao de resumo total
+def resumo():
+    valor = [100,200,300]
+    l_linha = Label(frameMeio, text="", width=215, height=1, anchor=NW, font=('Arial 1'), bg='#545454')
+    l_linha.place(x=309, y=52)
+
+    l_sumario = Label(frameMeio, text="Total Renda Mensal      ".upper(), anchor=NW, font=('Verdana 12'), bg=co1, fg='#83a9e6')
+    l_sumario.place(x=309, y=35)
+
+    l_sumario = Label(frameMeio, text="R$ {:,.2f}".format(valor[0]), anchor=NW, font=('arial 17'), bg=co1, fg='#545454')
+    l_sumario.place(x=309, y=70)
+
 porcentagem()
 grafico_bar()
+resumo()
 janela.mainloop()
