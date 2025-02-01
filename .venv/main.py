@@ -113,15 +113,31 @@ def grafico_bar():
 
 # funcao de resumo total
 def resumo():
+
     valor = [100,200,300]
+
     l_linha = Label(frameMeio, text="", width=215, height=1, anchor=NW, font=('Arial 1'), bg='#545454')
     l_linha.place(x=309, y=52)
-
     l_sumario = Label(frameMeio, text="Total Renda Mensal      ".upper(), anchor=NW, font=('Verdana 12'), bg=co1, fg='#83a9e6')
     l_sumario.place(x=309, y=35)
-
     l_sumario = Label(frameMeio, text="R$ {:,.2f}".format(valor[0]), anchor=NW, font=('arial 17'), bg=co1, fg='#545454')
     l_sumario.place(x=309, y=70)
+
+
+    l_linha = Label(frameMeio, text="", width=215, height=1, anchor=NW, font=('Arial 1'), bg='#545454')
+    l_linha.place(x=309, y=132)
+    l_sumario = Label(frameMeio, text="Total Despesas Mensais      ".upper(), anchor=NW, font=('Verdana 12'), bg=co1, fg='#83a9e6')
+    l_sumario.place(x=309, y=115)
+    l_sumario = Label(frameMeio, text="R$ {:,.2f}".format(valor[0]), anchor=NW, font=('arial 17'), bg=co1, fg='#545454')
+    l_sumario.place(x=309, y=150)
+
+
+    l_linha = Label(frameMeio, text="", width=215, height=1, anchor=NW, font=('Arial 1'), bg='#545454')
+    l_linha.place(x=309, y=207)
+    l_sumario = Label(frameMeio, text="Total Saldo do Caixa      ".upper(), anchor=NW, font=('Verdana 12'), bg=co1, fg='#83a9e6')
+    l_sumario.place(x=309, y=190)
+    l_sumario = Label(frameMeio, text="R$ {:,.2f}".format(valor[0]), anchor=NW, font=('arial 17'), bg=co1, fg='#545454')
+    l_sumario.place(x=309, y=220)
 
 porcentagem()
 grafico_bar()
